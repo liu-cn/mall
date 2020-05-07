@@ -1,4 +1,7 @@
 import{request} from "./request";
+// import formatDate from "../common/util/formatDate";
+// import  from '../common/util/formatDate'
+import {format} from "../common/util/formatDate";
 
 //获取详情页数据
 export function getDetailData(iid) {
@@ -7,6 +10,13 @@ export function getDetailData(iid) {
     params:{
       iid
     }
+  })
+}
+
+//获取详情页推荐数据
+export function getRecommend() {
+  return request({
+    url:'/recommend'
   })
 }
 
@@ -59,9 +69,25 @@ export class GoodsSize {
           }
         }
       }
-
-
-
     }
+  }
+}
+
+export class Rate{
+  constructor(rate) {
+
+    if (rate.list==undefined){
+      this.isNull=true
+    }else{
+      this.content=rate.list[0].content
+      this.name=rate.list[0].user.uname
+      this.avatar=rate.list[0].user.avatar
+      this.style=rate.list[0].style
+      this.extraInfo=rate.list[0].extraInfo
+      this.images=rate.list[0].images
+      this.date= format(rate.list[0].created*1000,"yyyy-MM-dd hh:mm:ss")
+    }
+
+
   }
 }

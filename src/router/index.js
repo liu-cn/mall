@@ -23,7 +23,7 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/profile:iid',
+    path: '/profile',
     name: 'Profile',
     component: Profile
   },

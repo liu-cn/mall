@@ -1,7 +1,7 @@
 <template>
     <div class="goods-list-item" @click="goodsClick">
         <a>
-            <img :src="GoodsItem.show.img" @load="loadImage">   <!--监听图片加载事件，加载完成就调用-->
+            <img :src="showImg" @load="loadImage">   <!--监听图片加载事件，加载完成就调用-->
         </a>
         <div class="goodsInfo">
             <p class="title">{{GoodsItem.title}}</p>
@@ -24,13 +24,17 @@
         }
       }
     },
+    computed:{
+      showImg(){
+        return this.GoodsItem.image || this.GoodsItem.show.img
+      }
+    },
     methods:{
       loadImage(){
         //发送一个事件总线，
-        this.$bus.$emit('loadImage')
+        this.$bus.$emit('loadImage',this.$route.path)
       },
       goodsClick(){
-        console.log('goods click')
         this.$router.push('/detail/'+this.GoodsItem.iid)
       }
     }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>分类</h1>
+    <h1>待开发...</h1>
     <div class="content">
 
     </div>

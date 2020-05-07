@@ -90,8 +90,11 @@
    },
    mounted() {
      // 组件挂载后·监听事件总线，
-     this.$bus.$on('loadImage',()=>{
-     this.$refs.scroll && this.$refs.scroll.refresh()
+     this.$bus.$on('loadImage',(route)=>{
+       if (route.indexOf("/home")!=-1){
+         this.$refs.scroll && this.$refs.scroll.refresh()
+       }
+
      })
    },
    // 进入路由时
@@ -100,13 +103,11 @@
      this.$refs.scroll.ScrollTo(0,this.scrollY)
      //移动到位置后重新计算一下滚动区域，不然有时候会卡顿。
      this.$refs.scroll.refresh()
-     console.log('activated')
    },
    //离开路由时
    deactivated() {
      // 记录当时离开时滑到哪个位置
      this.scrollY= this.$refs.scroll.getScrollY()
-     console.log(this.scrollY)
    },
 
    methods:{
