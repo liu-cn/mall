@@ -19,7 +19,7 @@
         <!--回到顶部-->
         <back-top @click.native="backTop" v-show="isShow"></back-top>
         <!--底部收藏，购买按钮-->
-        <detail-bottom-bar></detail-bottom-bar>
+        <detail-bottom-bar :goods="goods"></detail-bottom-bar>
     </div>
 </template>
 
@@ -83,12 +83,13 @@
         // console.log(res)
         //保存商品介绍
         const data=res.data.result
+        console.log(data);
         //轮播图数据
         this.topImages=data.itemInfo.topImages
         //保存商品穿着展示信息
         this.goodsInfo=data.detailInfo.detailImage[0]
         //创建商品对象
-        this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services)
+        this.goods = new Goods(data.itemInfo,data.columns,data.shopInfo.services,data.detailInfo)
         //保存店铺数据
         this.shopInfo = new ShopInfo(data.shopInfo)
         //保存商品尺寸信息

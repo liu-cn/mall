@@ -22,7 +22,7 @@ export function getRecommend() {
 
 //商品价格信息
 export class Goods {
-  constructor(itemInfo,columns,services) {
+  constructor(itemInfo,columns,services,detailInfo) {
     this.title=itemInfo.title
     this.desc=itemInfo.desc
     this.newPrice=itemInfo.price
@@ -31,6 +31,10 @@ export class Goods {
     this.columns=columns
     this.services=services
     this.realPrice=itemInfo.lowNowPrice
+    this.iid=itemInfo.iid
+    this.img=detailInfo.detailImage[0].list[0]
+    this.num=1
+    this.isSelect=true
   }
 }
 

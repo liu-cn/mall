@@ -2,7 +2,8 @@
   <div class="shopCart">
     <div class="wrapper" ref="wrapper">
       <div class="content">
-    <h1>开发中...</h1>
+        <p v-if="cartList.length===0">购物车为空，去添加一个吧！</p>
+        <shop-cart-list v-else v-for="i in cartList" :info="i"></shop-cart-list>
       </div>
     </div>
   </div>
@@ -10,21 +11,27 @@
 
 <script>
   import BScroll from 'better-scroll'
+  import shopCartList from "./ChildComps/shopCartList";
 
-export default {
+  export default {
   name:"ShopCart",
+  components: {
+    shopCartList,
+  },
   data(){
     return{
-      bscoll:null
+      bscoll:null,
     }
   },
+    computed:{
+      cartList(){
+        return this.$store.getters.getCartList
+      }
+    },
   mounted() {
     this.bscoll=new BScroll('.wrapper',{
-      probeType:3
-    })
-
-    this.bscoll.on('scroll',(position)=>{
-      console.log(position)
+      probeType:0,
+      click:true
     })
 
   }
@@ -35,7 +42,11 @@ export default {
 
 <style scoped>
   .wrapper{
-    height: 150px;
+    position: fixed;
+    bottom: 49px;
+    left: 0px;
+    right: 0px;
+    top: 44px;
     overflow: hidden;
   }
 

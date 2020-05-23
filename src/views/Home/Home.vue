@@ -159,7 +159,6 @@
      LoadMore(){
        // this.$refs.Scroll.
        this.getHomeGoods(this.CurrentSelect)
-       console.log('hello ')
      },
    }
 

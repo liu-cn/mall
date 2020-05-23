@@ -16,7 +16,7 @@
        </div>
    </div>
    <div class="right">
-        <div class="add-cat">
+        <div class="add-cat" @click="AddCart">
             加入购物车
         </div>
        <div class="buy">
@@ -29,8 +29,29 @@
 </template>
 
 <script>
-  export default {
-    name: "DetailBottomBar"
+    import {addShopList} from "../../../common/util/addShopList";
+
+    export default {
+    name: "DetailBottomBar",
+      props:{
+        goods:{
+          type:Object,
+          default(){
+            return {}
+          }
+        }
+      },
+      methods:{
+        AddCart(){
+          let shop=new addShopList(this.goods)
+          console.log(this.goods);
+          console.log(shop);
+          this.$store.commit("AddCatList",this.goods)
+          console.log(this.$store.state.CartList);
+          alert("加入购物车成功！")
+
+        }
+      },
   }
 </script>
 

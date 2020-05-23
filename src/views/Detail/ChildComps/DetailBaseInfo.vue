@@ -163,9 +163,6 @@
        padding-right: 2px;
        display: inline-block;
    }
-    /*.just3{*/
-    /*    width: 33%;*/
-    /*}*/
     .shop-info{
       margin-top: 20px;
       position: relative;
@@ -245,8 +242,4 @@
         font-size: 12px;
         text-align: center;
     }
-
-
-
-
 </style>
