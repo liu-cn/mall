@@ -43,9 +43,9 @@
       },
       methods:{
         AddCart(){
-          let shop=new addShopList(this.goods)
-          console.log(this.goods);
-          console.log(shop);
+          // let shop=new addShopList(this.goods)
+          // console.log(this.goods);
+          // console.log(shop);
           this.$store.commit("AddCatList",this.goods)
           console.log(this.$store.state.CartList);
           alert("加入购物车成功！")

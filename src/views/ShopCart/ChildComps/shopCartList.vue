@@ -11,9 +11,9 @@
             <div class="null"></div>
             <div class="price">￥{{info.realPrice}}</div>
             <div class="change-num">
-                <button class="add-num">+</button>
+                <button class="add-num" @click="addShopNum">+</button>
                 <div class="num"><span>{{info.num}}</span></div>
-                <button class="reduce">-</button>
+                <button class="reduce" @click="subShopNum">-</button>
             </div>
         </div>
     </div>
@@ -22,9 +22,11 @@
 <script>
   export default {
     name: "shopCartList",
+    components: {
+
+    },
     data(){
       return{
-        isSelect:this.info.isSelect
       }
     },
     props:{
@@ -40,10 +42,20 @@
     },
     methods:{
       btnClick(){
-        // console.log("iid",this.info.iid,)
         this.$store.commit("changeSelect",this.info.iid)
-        console.log(this.isSelect)
-        // this.isSelect=!this.isSelect
+        console.log("this.isSELECT:",this.isSelect)
+        console.log("cart list:",this.$store.getters.getCartList);
+      },
+      addShopNum(){
+        this.$store.commit("changeNum",[this.info.iid,"add"])
+      },
+      subShopNum(){
+        this.$store.commit("changeNum",[this.info.iid,"sub"])
+      },
+    },
+    computed:{
+      isSelect(){
+        return this.$store.getters.getSelect(this.info.iid)
       }
     }
   }
@@ -65,7 +77,7 @@
         height: 80px;
     }
     .shop-img img{
-
+        height: 85%;
         width: 50px;
     }
     .shop-img{
