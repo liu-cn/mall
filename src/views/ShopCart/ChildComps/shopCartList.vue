@@ -2,18 +2,26 @@
     <div class="cart-list-item">
         <div class="shop-info">
             <div class="btn" @click="btnClick">
-                <div class="point" :class="{isSelect:this.isSelect}">√</div>
+              <!-- 选择图标 -->
+                <div class="point" @click="" :class="{isSelect:this.isSelect}">√</div>
             </div>
             <div class="shop-img"><img :src="info.img" alt=""></div>
+            <!-- 标题 -->
             <div  class="title"><div>{{info.title}}</div></div>
         </div>
         <div class="price-num">
             <div class="null"></div>
-            <div class="price">￥{{info.realPrice}}</div>
+            <!-- 价格 -->
+            <div class="price">￥{{info.realPrice*info.num}}</div>
             <div class="change-num">
+              <!-- 添加 -->
                 <button class="add-num" @click="addShopNum">+</button>
+                <!-- 数量 -->
                 <div class="num"><span>{{info.num}}</span></div>
+                <!-- 减少 -->
+                <!-- <button class="reduce" @click="subShopNum">-</button> -->
                 <button class="reduce" @click="subShopNum">-</button>
+                <!-- <el-button class="reduce" plain @click="open2">-</el-button> -->
             </div>
         </div>
     </div>
@@ -50,8 +58,24 @@
         this.$store.commit("changeNum",[this.info.iid,"add"])
       },
       subShopNum(){
+        if(this.info.num==1){
+          this.open2()
+        }
         this.$store.commit("changeNum",[this.info.iid,"sub"])
+        console.log(this.$store.getters.getCartList,"111");
+        
+        // console.log(this.info.num)
       },
+      open2() {
+        this.$notify({
+          title: '警告',
+          message: '数量不可以再少了！',
+          type: 'warning'
+        });
+      },
+    },
+    selectChange(){
+        this.$store.commit("changeSelect",this.info.iid)
     },
     computed:{
       isSelect(){
@@ -62,7 +86,7 @@
 
 </script>
 
-<style scoped>
+<style>
     .cart-list-item{
         border: 1px solid;
         border-radius: 10px;

@@ -6,12 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     CartList:[],
+    AllSeltct:true
   },
   mutations: {
+    // 添加商品到购物车列表
     AddCatList(state,shopInfo){
       state.CartList.push(shopInfo)
       console.log(state.CartList);
     },
+    // 切换选择状态
     changeSelect(state,iid){
       console.log(state)
       console.log("iid=",iid)
@@ -21,6 +24,7 @@ export default new Vuex.Store({
         }
       }
     },
+    // 加减数量
     changeNum(state,idAndTarget){
 
         for (let i=0;i<state.CartList.length;i++){
@@ -31,10 +35,10 @@ export default new Vuex.Store({
               if (state.CartList[i].num>1){
                 state.CartList[i].num--
               }else {
-                alert("数量不可以再减少了！")
+                // alert("数量不可以再减少了！")
               }
             }else {
-              console.log("err in store/index.js line 37 maybe target is wrong!");
+              console.log("err in store/index.js changeNum（） maybe target is wrong!");
             }
           }
         }

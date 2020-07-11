@@ -1,7 +1,7 @@
 <template>
     <div class="shop-settlement">
         <div class="all-select" @click="allSelectClick">
-            <div class="point" :class="{allSelect:isAllSelect}">√</div>
+            <div class="point" :class="{allSelect:$store.getters.getIsAllSelect}">√</div>
             <span class="text">全选</span>
         </div>
     </div>
@@ -10,6 +10,11 @@
 <script>
   export default {
     name: "shopSettlement",
+    data(){
+      return {
+        allselect:this.$store.getters.getIsAllSelect
+      }
+    },
     methods:{
       allSelectClick(){
         this.$store.commit("allSelectClick")
@@ -17,7 +22,7 @@
     },
     computed:{
       isAllSelect(){
-       return  this.$store.getters.getIsAllSelect
+       this.allselect=  this.$store.getters.getIsAllSelect()
       }
     }
   }

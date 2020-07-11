@@ -16,9 +16,10 @@
        </div>
    </div>
    <div class="right">
-        <div class="add-cat" @click="AddCart">
+        <!-- <div class="add-cat" @click="AddCart">
             加入购物车
-        </div>
+        </div> -->
+          <el-button class="add-cat" plain @click="open1">加入购物车</el-button>
        <div class="buy">
            购买
        </div>
@@ -48,9 +49,21 @@
           // console.log(shop);
           this.$store.commit("AddCatList",this.goods)
           console.log(this.$store.state.CartList);
-          alert("加入购物车成功！")
+          
 
-        }
+        },
+        
+      open1() {
+        this.$notify({
+          title: '成功',
+          message: '加入购物车成功!',
+          type: 'success'
+        });
+        this.AddCart()
+      }
+     
+       
+
       },
   }
 </script>
